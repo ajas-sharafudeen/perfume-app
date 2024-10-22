@@ -3,13 +3,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const Container = styled.div`
-  flex: 1;
   margin: 5px;
-  /* min-width: 280px; */
-  /* height: 350px; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
+  min-width: 280px;
   border: 1px solid #d4d4d4da;
 `;
 
@@ -32,8 +27,13 @@ const SalePercentage = styled.span`
 
 const ProductImage = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+`;
+
+const Image = styled.img`
+  max-width: 50%;
+  height: auto;
 `;
 
 const Fragrances = styled.div`
@@ -55,10 +55,6 @@ const SecondMix = styled.span`
   background-color: #ffe0aa;
 `;
 
-const Image = styled.img`
-  object-fit: cover;
-`;
-
 const Info = styled.div`
   display: flex;
   justify-content: center;
@@ -74,13 +70,42 @@ const Quantity = styled.div`
   width: 30%;
   padding: 5px;
   color: #2f2f2f;
-  background-color: #cdcdcd;
+  background-color: #e3ebda;
+  text-align: center;
+`;
+
+const Reviews = styled.div`
+  height: 20px;
+  width: 50%;
+  margin-left: 30px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Rating = styled.p`
+  flex: 1;
+  font-size: 12px;
+  text-align: center;
+  color: #4dbb34;
+  background-color: #e3ebda;
+  padding: 2px 5px;
+`;
+
+const Review = styled.p`
+  flex: 2;
+  text-align: center;
+  color: #5d5d5d;
+`;
+
+const Price = styled.div`
+  font-size: 20px;
+  padding: 5px;
   text-align: center;
 `;
 
 const Buttons = styled.div`
   height: 40px;
-  border: 1px solid red;
   background-color: #225895;
   padding: 5px;
   display: flex;
@@ -93,6 +118,30 @@ const WishList = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: 'Add to Wish List';
+    position: absolute;
+    bottom: 125%; /* Position above the element */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
 `;
 const AddToCart = styled.div`
   width: 100%;
@@ -101,6 +150,7 @@ const AddToCart = styled.div`
   margin-right: 10%;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const AddText = styled.div``;
@@ -122,6 +172,11 @@ function Product({ item }) {
       <Info>
         <Title>{item.title}</Title>
         <Quantity>{item.quantity}</Quantity>
+        <Reviews>
+          <Rating>{item.rating}</Rating>
+          <Review>{item.review}</Review>
+        </Reviews>
+        <Price>&#8377;{item.price}</Price>
       </Info>
       <Buttons>
         <WishList>

@@ -4,9 +4,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Badge } from '@mui/material';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
   height: 6vh;
+  ${mobile({ height: '50px' })}
 `;
 
 const Wrapper = styled.div`
@@ -14,6 +16,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${mobile({ padding: '10px 0px' })}
 `;
 
 const Left = styled.div`
@@ -23,13 +26,15 @@ const Left = styled.div`
 const Logo = styled.h1`
   display: inline-block;
   cursor: pointer;
+  ${mobile({ fontSize: '24px' })}
 `;
 
 const Right = styled.div`
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: flex-end;
+  ${mobile({ justifyContent: 'center' })}
 `;
 
 const SearchContainer = styled.div`
@@ -47,6 +52,7 @@ const Input = styled.input`
   padding: 5px;
   background-color: #e6e6e6;
   outline: none;
+  ${mobile({ width: '50px' })}
 `;
 
 const MenuItem = styled.div`
@@ -55,6 +61,7 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  ${mobile({ fontSize: '12px', marginLeft: '10px' })}
 `;
 
 function Navbar() {
