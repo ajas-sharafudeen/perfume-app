@@ -1,9 +1,11 @@
 GET http://localhost:5000/api/user/usertest
 
 ###
-POST http://localhost:5000/api/user/userposttest
+POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
 {
-  "username":"Ajas"
+  "username":"Ajas",
+  "email":"ajas@gmail.com",
+  "password":"123456"
 }
