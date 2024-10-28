@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 // Hashing function for checking passwords
 function verifyPassword(password, salt, hash) {
@@ -50,9 +51,18 @@ router.post('/login', async (req, res) => {
       return res.status(401).json('Wrong credentials!');
     }
 
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '3d' }
+    );
+
     // Exclude password-related fields before sending the response
     const { salt, hash, ...others } = user._doc;
-    res.status(200).json(others);
+    res.status(200).json({ ...others, accessToken });
   } catch (error) {
     res.status(500).json(error);
   }
