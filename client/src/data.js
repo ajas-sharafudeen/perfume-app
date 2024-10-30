@@ -27,16 +27,19 @@ export const categories = [
     id: 1,
     img: 'https://placehold.co/940x650?text=Image+1',
     title: 'Category 1',
+    category: 'women',
   },
   {
     id: 2,
     img: 'https://placehold.co/940x650?text=Image+3',
     title: 'Category 2',
+    category: 'men',
   },
   {
     id: 3,
     img: 'https://placehold.co/940x650?text=Image+3',
     title: 'Category 3',
+    category: 'children',
   },
 ];
 
