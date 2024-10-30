@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { products } from '../data';
+import { popularProducts } from '../data';
 import Product from './Product';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Container = styled.div`
   padding: 20px;
@@ -10,12 +12,64 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-function Products() {
+function Products({ category, filters, sort }) {
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const response = await axios.get(
+          category
+            ? `http://localhost:5000/api/products?category=${category}`
+            : 'http://localhost:5000/api/products'
+        );
+        setProducts(response.data);
+      } catch (error) {}
+    };
+    getProducts();
+  }, [category]);
+
+  useEffect(() => {
+    category &&
+      setFilteredProducts(
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) => {
+            item[key].includes(value);
+          })
+        )
+      );
+  }, [products, category, filters]);
+
+  useEffect(() => {
+    if (sort === 'best') {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => (a.createdAt = b.createdAt))
+      );
+    } else if (sort === 'popularity') {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => (a.createdAt = b.createdAt))
+      );
+    } else if (sort === 'discount') {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => (a.createdAt = b.createdAt))
+      );
+    } else if (sort === 'lowtohigh') {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => (a.price = b.price))
+      );
+    } else if (sort === 'hightolow') {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => (b.price = a.price))
+      );
+    }
+  }, [sort]);
+
   return (
     <Container>
-      {products.map((item) => (
-        <Product key={item.id} item={item} />
-      ))}
+      {category
+        ? filteredProducts.map((item) => <Product key={item.id} item={item} />)
+        : products.map((item) => <Product key={item.id} item={item} />)}
     </Container>
   );
 }
