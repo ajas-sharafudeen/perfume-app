@@ -43,7 +43,7 @@ export const categories = [
   },
 ];
 
-export const products = [
+export const popularProducts = [
   {
     id: 1,
     img: 'https://res.cloudinary.com/dgkbxgdt5/image/upload/v1729610440/perfume.webp',
@@ -51,7 +51,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: `599`,
+    price: '599',
   },
   {
     id: 2,
@@ -60,7 +60,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '499',
   },
   {
     id: 3,
@@ -69,7 +69,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '399',
   },
   {
     id: 4,
@@ -78,7 +78,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '379',
   },
   {
     id: 5,
@@ -87,7 +87,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '449',
   },
   {
     id: 6,
@@ -96,7 +96,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '289',
   },
   {
     id: 7,
@@ -105,7 +105,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '319',
   },
   {
     id: 8,
@@ -114,7 +114,7 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '329',
   },
   {
     id: 9,
@@ -123,6 +123,6 @@ export const products = [
     quantity: '100ml',
     rating: '4.6 Stars',
     review: '7 Reviews',
-    price: '599',
+    price: '529',
   },
 ];
