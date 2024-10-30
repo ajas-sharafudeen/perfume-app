@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   margin: 5px;
@@ -158,35 +159,37 @@ const AddText = styled.div``;
 function Product({ item }) {
   return (
     <Container>
-      <Labels>
-        <SaleCategory>Best Seller</SaleCategory>
-        <SalePercentage>20% OFF</SalePercentage>
-      </Labels>
-      <ProductImage>
-        <Image src={item.img} />
-      </ProductImage>
-      <Fragrances>
-        <FirstMix>AMBERY</FirstMix>
-        <SecondMix>WARM</SecondMix>
-      </Fragrances>
-      <Info>
-        <Title>{item.title}</Title>
-        <Quantity>{item.quantity}</Quantity>
-        <Reviews>
-          <Rating>{item.rating}</Rating>
-          <Review>{item.review}</Review>
-        </Reviews>
-        <Price>&#8377;{item.price}</Price>
-      </Info>
-      <Buttons>
-        <WishList>
-          <FavoriteBorderIcon fontSize="large" />
-        </WishList>
-        <AddToCart>
-          <ShoppingCartOutlinedIcon />
-          <AddText>ADD</AddText>
-        </AddToCart>
-      </Buttons>
+      <Link to={`/product/${item._id}`}>
+        <Labels>
+          <SaleCategory>Best Seller</SaleCategory>
+          <SalePercentage>20% OFF</SalePercentage>
+        </Labels>
+        <ProductImage>
+          <Image src={item.img} />
+        </ProductImage>
+        <Fragrances>
+          <FirstMix>AMBERY</FirstMix>
+          <SecondMix>WARM</SecondMix>
+        </Fragrances>
+        <Info>
+          <Title>{item.title}</Title>
+          <Quantity>{item.quantity}</Quantity>
+          <Reviews>
+            <Rating>{item.rating}</Rating>
+            <Review>{item.review}</Review>
+          </Reviews>
+          <Price>&#8377;{item.price}</Price>
+        </Info>
+        <Buttons>
+          <WishList>
+            <FavoriteBorderIcon fontSize="large" />
+          </WishList>
+          <AddToCart>
+            <ShoppingCartOutlinedIcon />
+            <AddText>ADD</AddText>
+          </AddToCart>
+        </Buttons>
+      </Link>
     </Container>
   );
 }
