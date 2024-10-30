@@ -12,7 +12,7 @@ const cartRoute = require('./routes/cart');
 
 require('dotenv').config();
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 // Creates a database connection
@@ -22,12 +22,12 @@ mongoose
   .catch((error) => console.log(error));
 
 //cors configuration
-// app.use(
-//   cors({
-//     origin: process.env.CLIENT_BASE_URL,
-//     methods: ['GET', 'POST', 'DELETE', 'PUT'],
-//   })
-// );
+app.use(
+  cors({
+    origin: process.env.CLIENT_BASE_URL,
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+  })
+);
 
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
