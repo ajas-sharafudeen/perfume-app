@@ -9,8 +9,8 @@ const authRoute = require('./routes/auth');
 const productRoute = require('./routes/product');
 const orderRoute = require('./routes/order');
 const cartRoute = require('./routes/cart');
-
 require('dotenv').config();
+const stripeRoute = require('./routes/stripe');
 
 app.use(cors());
 app.use(express.json());
@@ -34,6 +34,7 @@ app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
 app.use('/api/carts', cartRoute);
 app.use('/api/orders', orderRoute);
+app.use('/api/checkout', stripeRoute);
 
 // Define routes and middleware
 app.listen(PORT, () => {
