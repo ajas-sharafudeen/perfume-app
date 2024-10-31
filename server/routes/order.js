@@ -13,8 +13,8 @@ router.post('/', verifyToken, async (req, res) => {
   try {
     const savedOrder = await newOrder.save();
     res.status(200).json(savedOrder);
-  } catch (error) {
-    res.status(500).json(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -23,8 +23,8 @@ router.get('/find/:userId', verifyTokenAndAuthorization, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.userId });
     res.status(200).json(orders);
-  } catch (error) {
-    res.status(500).json(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -33,8 +33,8 @@ router.get('/', verifyTokenAndAdmin, async (req, res) => {
   try {
     const orders = await Order.find();
     res.status(200).json(orders);
-  } catch (error) {
-    res.status(500).json(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -49,8 +49,8 @@ router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
       { new: true }
     );
     res.status(200).json(updatedOrder);
-  } catch (error) {
-    res.status(500).json(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
@@ -58,14 +58,15 @@ router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
 router.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id);
-    res.status(200).json('Order is deleted successfully!');
-  } catch (error) {
-    res.status(500).json(error);
+    res.status(200).json('Order has been deleted...');
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
 //GET MONTHLY INCOME
 router.get('/income', verifyTokenAndAdmin, async (req, res) => {
+  const productId = req.query.pid;
   const date = new Date();
   const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
   const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
@@ -75,6 +76,9 @@ router.get('/income', verifyTokenAndAdmin, async (req, res) => {
       {
         $match: {
           createdAt: { $gte: previousMonth },
+          ...(productId && {
+            products: { $elemMatch: { productId } },
+          }),
         },
       },
       {
@@ -91,8 +95,8 @@ router.get('/income', verifyTokenAndAdmin, async (req, res) => {
       },
     ]);
     res.status(200).json(income);
-  } catch (error) {
-    res.status(500).json(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

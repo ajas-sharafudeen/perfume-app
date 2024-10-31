@@ -5,6 +5,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Badge } from '@mui/material';
 import { mobile } from '../responsive';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   height: 6vh;
@@ -65,6 +67,8 @@ const MenuItem = styled.div`
 `;
 
 function Navbar() {
+  const quantity = useSelector((state) => state.cart.quantity);
+
   return (
     <Container>
       <Wrapper>
@@ -81,11 +85,13 @@ function Navbar() {
               <FavoriteBorderIcon fontSize="large" />
             </Badge>
           </MenuItem>
-          <MenuItem>
-            <Badge>
-              <ShoppingCartOutlinedIcon fontSize="large" />
-            </Badge>
-          </MenuItem>
+          <Link to="/cart">
+            <MenuItem>
+              <Badge badgeContent={quantity} color="primary">
+                <ShoppingCartOutlinedIcon fontSize="large" />
+              </Badge>
+            </MenuItem>
+          </Link>
           <MenuItem>
             <Badge>
               <PersonOutlineOutlinedIcon fontSize="large" />
