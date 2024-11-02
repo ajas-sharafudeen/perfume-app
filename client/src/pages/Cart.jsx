@@ -177,9 +177,9 @@ const Cart = () => {
         const res = await userRequest.post('/checkout/payment', {
           tokenId: stripeToken.id,
           // amount: cart.total * 100,
-          amount: 100,
+          amount: 500,
         });
-        navigate('/success', { data: res.data });
+        navigate('/success', { state: { data: res.data } });
       } catch (error) {}
     };
     stripeToken && makeRequest();
