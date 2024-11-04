@@ -1,5 +1,6 @@
 .newProduct {
   flex: 4;
+  margin-left: 20px;
 }
 
 .addProductForm {
@@ -32,7 +33,7 @@
   padding: 7px 10px;
   border: none;
   border-radius: 10px;
-  background-color: darkblue;
+  background-color: rgb(0, 139, 90);
   color: white;
   font-weight: 600;
   cursor: pointer;
