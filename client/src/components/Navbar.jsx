@@ -73,7 +73,9 @@ function Navbar() {
     <Container>
       <Wrapper>
         <Left>
-          <Logo>LOGO</Logo>
+          <Link to="/">
+            <Logo>LOGO</Logo>
+          </Link>
         </Left>
         <Right>
           <SearchContainer>
