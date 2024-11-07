@@ -24,7 +24,13 @@ const Products = ({ cat, filters, sort }) => {
             : 'http://localhost:5000/api/products'
         );
         setProducts(res.data);
-      } catch (err) {}
+      } catch (err) {
+        if (err.response) {
+          console.log(`Error: ${err.response.status} - ${err.response.data}`);
+        } else {
+          console.log('Error: Could not reach the server');
+        }
+      }
     };
     getProducts();
   }, [cat]);
@@ -59,10 +65,10 @@ const Products = ({ cat, filters, sort }) => {
   return (
     <Container>
       {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
         : products
             .slice(0, 8)
-            .map((item) => <Product item={item} key={item.id} />)}
+            .map((item) => <Product item={item} key={item._id} />)}
     </Container>
   );
 };
